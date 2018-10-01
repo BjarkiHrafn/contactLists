@@ -11,13 +11,21 @@ const doubleArr = sorted.reduce((acc, info) => {
   if (!acc[firstletter]) {
     acc[firstletter] = [];
   }
-  acc[firstletter].push(info.name.first_name);
+  acc[firstletter].push(info);
   return acc;
-});
+}, {});
+
+console.log(doubleArr);
 
 /*let sectionArr = [];
 for (let key in doubleArr) {
   sectionArr.push({ title: key, data: doubleArr[key] });
 }*/
 
-console.log(doubleArr);
+//concerts: res.results.map((c, i) => ({ ...c, key: `${i}` }))
+
+/*const tibi = [1, 2, 3];
+
+const sectionArr = tibi.map((c, i) => ({ ...c, key: `${i}` }));*/
+
+//console.log(sectionArr);

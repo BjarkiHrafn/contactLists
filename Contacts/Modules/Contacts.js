@@ -13,7 +13,7 @@ class Contacts extends React.Component {
     console.log(this.state.data);
   }
 
-  render() {
+  componentDidMount() {
     const sorted = this.state.data.sort(function(a, b) {
       if (a.name.first_name < b.name.first_name) return -1;
       if (a.name.first_name > b.name.first_name) return 1;
@@ -27,14 +27,17 @@ class Contacts extends React.Component {
       }
       acc[firstletter].push(info.name.first_name);
       return acc;
-    });
+    }, {});
 
     let sectionArr = [];
     for (let key in doubleArr) {
       sectionArr.push({ title: key, data: doubleArr[key] });
     }
 
-    console.log(sectionArr);
+    this.setState({ ArrArr: sectionArr });
+  }
+
+  render() {
     return (
       <SectionList
         renderItem={({ item, index, section }) => (
@@ -43,7 +46,7 @@ class Contacts extends React.Component {
         renderSectionHeader={({ section: { title } }) => (
           <Text style={{ fontWeight: "bold" }}>{title}</Text>
         )}
-        sections={sectionArr}
+        sections={this.state.ArrArr}
         keyExtractor={(item, index) => item + index}
       />
     );
